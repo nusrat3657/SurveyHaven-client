@@ -1,12 +1,33 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const NavBar = () => {
 
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logged Out Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch()
+    }
+
     const navOptions = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/survey'>Survey</Link></li>
-        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/dashboard/secret'>Secret</Link></li>
+        <li><Link to='/pricing'>Pricing</Link></li>
+        <li><Link to='/dashboard/create'>Create Survey</Link></li>
     </>
 
     return (
@@ -30,7 +51,30 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <a className="btn">Button</a>
+                        {
+                            user ?
+                                <>
+                                    <button onClick={handleSignOut} className="btn  bg-blue-400 text-white text-lg px-8 border-none rounded-none mr-3">Log Out</button>
+
+                                    <div className="dropdown dropdown-end relative z-30 tooltip" data-tip={user?.displayName || "User Name not found"}>
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <div className=" rounded-full" >
+                                                <img alt="" src={user?.photoURL
+                                                    || "https://i.ibb.co/Y0RBQqQ/download.png"} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <Link to='/login'>
+                                        <button className="btn rounded-none border-none bg-blue-400 text-white text-lg px-8 mr-3">Login</button>
+                                    </Link>
+                                    <Link to='/register'>
+                                        {/* <button className="btn rounded-none bg-blue-400 text-white text-lg px-8 ">Register</button> */}
+                                    </Link>
+                                </>
+                        }
                     </div>
                 </div>
             </>
