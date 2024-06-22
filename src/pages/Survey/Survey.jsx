@@ -7,7 +7,6 @@ const Survey = () => {
 
     const axiosSecure = useAxiosSecure();
     const [surveys, setSurveys] = useState([]);
-    const totalVote = surveys.yesCount + surveys.noCount;
     const [filteredSurveys, setFilteredSurveys] = useState([]);
     const [category, setCategory] = useState('');
     const [sort, setSort] = useState(''); // 'asc' for ascending, 'desc' for descending
@@ -35,9 +34,9 @@ const Survey = () => {
         }
 
         if (sort === 'asc') {
-            filtered = filtered.sort((a, b) => a.voteCount - b.voteCount);
+            filtered = filtered.sort((a, b) => a.totalVote - b.totalVote);
         } else if (sort === 'desc') {
-            filtered = filtered.sort((a, b) => b.voteCount - a.voteCount);
+            filtered = filtered.sort((a, b) => b.totalVote - a.totalVote);
         }
 
         setFilteredSurveys(filtered);
@@ -58,7 +57,7 @@ const Survey = () => {
                 </div>
             </div>
             <div>
-                <div className="filters flex justify-between">
+                <div className="filters flex justify-evenly">
                     <label className="flex items-center">
                         <h2 className="font-bold">Category:</h2>
                         <select className="select select-bordered w-full max-w-xs" value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -75,9 +74,9 @@ const Survey = () => {
                         </select>
                     </label>
 
-                    <label>
-                        Sort by votes:
-                        <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                    <label className="flex items-center">
+                    <h2 className="font-bold">Sort by votes:</h2>
+                        <select className="select select-bordered w-full max-w-xs" value={sort} onChange={(e) => setSort(e.target.value)}>
                             <option value="">None</option>
                             <option value="asc">Ascending</option>
                             <option value="desc">Descending</option>

@@ -15,6 +15,11 @@ import CreateSurvey from "../pages/Dashboard/CreateSurvey/CreateSurvey";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import MyReports from "../pages/Dashboard/MyReports/MyReports";
 import Details from "../pages/Details/Details";
+import AdminRoute from "./AdminRoute";
+import Update from "../pages/Dashboard/Update/Update";
+import UpdateForm from "../pages/Dashboard/UpdateForm/UpdateForm";
+import SurveyorRoute from "./SurveyorRoute";
+import Response from "../pages/Dashboard/Response/Response";
 
 
 export const router = createBrowserRouter([
@@ -64,13 +69,26 @@ export const router = createBrowserRouter([
             // surveyor routes
             {
                 path: 'create',
-                element: <CreateSurvey></CreateSurvey>
+                element: <SurveyorRoute><CreateSurvey></CreateSurvey></SurveyorRoute>
+            },
+            {
+                path: 'update',
+                element: <SurveyorRoute><Update></Update></SurveyorRoute>
+            },
+            {
+                path: 'updates/:id',
+                element: <SurveyorRoute><UpdateForm></UpdateForm></SurveyorRoute>
+
+            },
+            {
+                path: 'responses/:id',
+                element: <Response></Response>
             },
 
             // admin routes
             {
                 path: 'users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
         ]
     },

@@ -10,21 +10,29 @@ const CreateSurvey = () => {
     const { reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const [formData, setFormData] = useState({
+        name: user.displayName,
+        email: user.email,
         title: '',
+        price: '',
         description: '',
         options: 'yes',
         category: '',
         deadline: '',
         yesCount: 0,
-        noCount: 0
+        noCount: 0,
+        totalVote: 0
     });
 
     const categories = [
         'Customer Service',
-        'Product Feedback',
-        'Market Research',
-        'Employee Satisfaction',
-        'Event Planning',
+        'Product',
+        'Website',
+        'Employee',
+        'Event',
+        'Training',
+        'Community',
+        'Mobile App',
+        'Support'
     ];
 
     const handleChange = (e) => {
@@ -41,7 +49,7 @@ const CreateSurvey = () => {
         const surveyData = {
             ...formData,
             status: 'publish',
-            timestamp: new Date().toISOString(),
+            date: new Date().toISOString(),
         };
 
         console.log('Survey Created:', surveyData);
@@ -127,6 +135,20 @@ const CreateSurvey = () => {
                                 </option>
                             ))}
                         </select>
+                    </div>
+                    <div className="form-group mb-8">
+                        <label className="label">
+                            <span className="label-text font-bold">Price</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            placeholder="Survey Price"
+                            className="input input-bordered w-full"
+                            required
+                        />
                     </div>
                     <div className="form-group mb-8">
                         <label className="label">

@@ -4,7 +4,7 @@ import useSurveyor from "../hooks/useSurveyor";
 import { Navigate, useLocation } from "react-router-dom";
 
 const SurveyorRoute = (children) => {
-    const [user, loading] = useContext(AuthContext);
+    const {user, loading} = useContext(AuthContext);
     const [isSurveyor, isSurveyorLoading] = useSurveyor();
     const location = useLocation();
 

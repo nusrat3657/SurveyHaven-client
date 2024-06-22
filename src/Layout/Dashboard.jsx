@@ -79,7 +79,12 @@ const Dashboard = () => {
                                         Update</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/dashboard/responses'>
+                                    <NavLink to='/dashboard/updates/:id'>
+                                        <FaEdit></FaEdit>
+                                        Update Form</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/responses/:id'>
                                         <FaRankingStar></FaRankingStar>
                                         Responses</NavLink>
                                 </li>
