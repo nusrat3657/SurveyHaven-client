@@ -1,16 +1,19 @@
-import { FaComment, FaEdit, FaHome, FaList, FaMobile, FaMoneyBill, FaProductHunt, FaUsers } from "react-icons/fa";
-import {  FaRankingStar } from "react-icons/fa6";
+import { FaComment, FaCreativeCommons, FaEdit, FaHome, FaList, FaMobile, FaMoneyBill, FaProductHunt, FaUsers } from "react-icons/fa";
+import { FaRankingStar } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+import useSurveyor from "../hooks/useSurveyor";
 
 const Dashboard = () => {
 
-    // const isSurveyor = true;
-    const isAdmin = true;
+    const [isSurveyor] = useSurveyor();
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-blue-400">
                 <ul className="menu p-4">
+                    <h2 className="text-xl font-bold bg-white text-blue-400 p-2 text-center">Dashboard</h2>
                     {
                         isAdmin ? <>
                             <li>
@@ -36,10 +39,44 @@ const Dashboard = () => {
                         </>
                             :
                             <>
+                                {/* <li>
+                                    <NavLink to='/dashboard/reports'>
+                                        <FaList></FaList>
+                                        My Reports</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/comments'>
+                                        <FaComment></FaComment>
+                                        My Comments</NavLink>
+                                </li>  */}
+                            </>
+                    }
+                    {/* <div className="divider"></div> */}
+
+                    {
+                        isSurveyor ? <>
+                            <li>
+                                <NavLink to='/dashboard/reports'>
+                                    <FaList></FaList>
+                                    My Reports</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/comments'>
+                                    <FaComment></FaComment>
+                                    My Comments</NavLink>
+                            </li>
+                        </>
+                            :
+                            <>
                                 <li>
                                     <NavLink to='/dashboard/create'>
-                                        <FaEdit></FaEdit>
+                                        <FaCreativeCommons></FaCreativeCommons>
                                         Create Survey</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/update'>
+                                        <FaEdit></FaEdit>
+                                        Update</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/responses'>
@@ -51,18 +88,49 @@ const Dashboard = () => {
                                         <FaMoneyBill></FaMoneyBill>
                                         Payments</NavLink>
                                 </li>
-                                <li>
-                                    <NavLink to='/dashboard/reports'>
-                                        <FaList></FaList>
-                                        My Reports</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to='/dashboard/comments'>
-                                        <FaComment></FaComment>
-                                        My Comments</NavLink>
-                                </li>
                             </>
                     }
+
+                    {/* {
+                        isSurveyor ? <>
+                            <li>
+                                <NavLink to='/dashboard/create'>
+                                    <FaCreativeCommons></FaCreativeCommons>
+                                    Create Survey</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/update'>
+                                    <FaEdit></FaEdit>
+                                    Update</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/responses'>
+                                    <FaRankingStar></FaRankingStar>
+                                    Responses</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/payments'>
+                                    <FaMoneyBill></FaMoneyBill>
+                                    Payments</NavLink>
+                            </li>
+                            
+                        </>
+                            :
+                            <>
+                            <li>
+                                <NavLink to='/dashboard/reports'>
+                                    <FaList></FaList>
+                                    My Reports</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/comments'>
+                                    <FaComment></FaComment>
+                                    My Comments</NavLink>
+                            </li>
+                            </>
+
+                    } */}
+
                     <div className="divider"></div>
                     <li>
                         <NavLink to='/'>

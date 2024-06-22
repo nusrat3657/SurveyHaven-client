@@ -27,13 +27,13 @@ const NavBar = () => {
         <li><Link to='/survey'>Survey</Link></li>
         <li><Link to='/dashboard/secret'>Secret</Link></li>
         <li><Link to='/pricing'>Pricing</Link></li>
-        <li><Link to='/dashboard/create'>Create Survey</Link></li>
+        <li><Link to='/dashboard/reports'>My Reports</Link></li>
     </>
 
     return (
         <div>
             <>
-                <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-lg bg-black text-white">
+                <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-lg bg-blue-400 text-white">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,7 +43,7 @@ const NavBar = () => {
                                 {navOptions}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost text-xl lobster-regular">SurveyHaven</a>
+                        <a className="btn btn-ghost text-xl lobster-regular">Survey<span className="text-blue-400">Haven</span></a>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">

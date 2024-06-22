@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 
 const FAQ = () => {
     return (
@@ -8,16 +9,17 @@ const FAQ = () => {
                     <p className="mt-4 mb-8 dark:text-gray-600">Sagittis tempor donec id vestibulum viverra. Neque condimentum primis orci at lacus amet bibendum.</p>
                     <div className="space-y-4">
                         <details className="w-full border rounded-lg">
-                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">Ex orci laoreet egestas sapien magna egestas scelerisque?</summary>
-                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">Lectus iaculis orci metus vitae ligula dictum per. Nisl per nullam taciti at adipiscing est. </p>
+                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">How do I get support or suggest a feature for the SurveyHaven API?</summary>
+                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">Reach out to our team for help or feedback by visiting our contact page. </p>
                         </details>
                         <details className="w-full border rounded-lg">
-                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">Lorem at arcu rutrum viverra metus sapien venenatis lobortis odio?</summary>
-                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">Tincidunt ut hac condimentum rhoncus phasellus nostra. Magna porttitor egestas tincidunt neque vehicula potenti. </p>
+                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">What is a survey?</summary>
+                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">A survey gathers information or feedback from individuals to understand their opinions,
+                            preferences, or experiences on a particular topic or subject.  </p>
                         </details>
                         <details className="w-full border rounded-lg">
-                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">Eleifend feugiat sollicitudin laoreet adipiscing bibendum suscipit erat?</summary>
-                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">Justo libero tellus integer tincidunt justo semper consequat venenatis aliquet imperdiet. Ultricies urna proin fusce nulla pretium sodales vel magna et massa euismod vulputate sed. </p>
+                            <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-default-600">How do I revoke an access token?</summary>
+                            <p className="px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600">You can refresh your app's credential in the settings for your app in the developer portal. This will refresh your secret, revoking all access to your app. </p>
                         </details>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Pricing from "../pages/Pricing/Pricing";
 import CreateSurvey from "../pages/Dashboard/CreateSurvey/CreateSurvey";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import MyReports from "../pages/Dashboard/MyReports/MyReports";
+import Details from "../pages/Details/Details";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +29,10 @@ export const router = createBrowserRouter([
         {
             path: '/survey',
             element: <Survey></Survey>
+        },
+        {
+            path: '/details/:id',
+            element: <Details></Details>
         },
         {
             path: 'pricing',
@@ -50,6 +56,12 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            {
+                path: 'reports',
+                element: <MyReports></MyReports>
+            },
+
+            // surveyor routes
             {
                 path: 'create',
                 element: <CreateSurvey></CreateSurvey>
