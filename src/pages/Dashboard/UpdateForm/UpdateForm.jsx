@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../../providers/AuthProvider";
+// import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 
 const UpdateForm = () => {
     const { id } = useParams();
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
     const { reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const [survey, setSurvey] = useState(null);
