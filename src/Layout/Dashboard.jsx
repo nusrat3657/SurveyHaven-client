@@ -81,17 +81,6 @@ const Dashboard = () => {
                                     <FaMoneyBill></FaMoneyBill>
                                     Payments</NavLink>
                             </li>
-
-                            {/* <li>
-                                <NavLink to='/dashboard/reports'>
-                                    <FaList></FaList>
-                                    My Reports</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/comments'>
-                                    <FaComment></FaComment>
-                                    My Comments</NavLink>
-                            </li> */}
                         </>
                             :
                             <>
