@@ -64,6 +64,7 @@ const Login = () => {
                     email: result.user?.email
                 }
                 axiosPublic.post('/users', userInfo)
+                // eslint-disable-next-line no-unused-vars
                 .then(res => {
                     // console.log(res.data);
                     navigate(from);
