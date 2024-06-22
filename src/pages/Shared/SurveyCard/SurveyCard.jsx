@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ survey }) => {
+    // eslint-disable-next-line no-unused-vars
     const { _id, title, description, yesCount, noCount } = survey;
     const totalVote = yesCount + noCount
     return (
