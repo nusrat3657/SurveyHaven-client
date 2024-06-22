@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuthContext } from "../../providers/AuthProvider";
+// import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Pricing = () => {
-    const {user} = useContext(AuthContext);
+    // const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
     const [surveys, setSurveys] = useState([]);
 
