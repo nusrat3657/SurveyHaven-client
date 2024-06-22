@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
 
 const Details = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { user, isProUser } = useContext(AuthContext);
     const [survey, setSurvey] = useState(null);
     const [vote, setVote] = useState('');
@@ -83,6 +83,7 @@ const Details = () => {
         return <div>Loading...</div>;
     }
 
+    // eslint-disable-next-line no-unused-vars
     const data = {
         labels: ['Yes', 'No'],
         datasets: [
