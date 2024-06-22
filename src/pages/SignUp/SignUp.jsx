@@ -51,7 +51,7 @@ const SignUp = () => {
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
-                                    console.log('user addeded to the database');
+                                    // console.log('user addeded to the database');
                                     reset();
                                     Swal.fire({
                                         position: "top-end",
@@ -67,7 +67,7 @@ const SignUp = () => {
                     })
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",

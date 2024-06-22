@@ -52,10 +52,10 @@ const CreateSurvey = () => {
             date: new Date().toISOString(),
         };
 
-        console.log('Survey Created:', surveyData);
+        // console.log('Survey Created:', surveyData);
 
         const surveyRes = await axiosSecure.post('/surveys', surveyData);
-        console.log(surveyRes.data);
+        // console.log(surveyRes.data);
         if (surveyRes.data.insertedId) {
             reset();
             Swal.fire({

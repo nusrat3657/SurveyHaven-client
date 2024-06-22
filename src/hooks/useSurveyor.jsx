@@ -10,7 +10,7 @@ const useSurveyor = () => {
         queryKey: [user?.email, 'isSurveyor'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/surveyor/${user.email}`);
-            console.log(res.data);
+            // console.log(res.data);
             return res.data?.admin;
         }
     });

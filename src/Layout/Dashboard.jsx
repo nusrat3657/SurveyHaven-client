@@ -27,7 +27,7 @@ const Dashboard = () => {
                                     Surveys</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/dashboard/responses'>
+                                <NavLink to='/dashboard/responses/:id'>
                                     <FaRankingStar></FaRankingStar>
                                     Responses</NavLink>
                             </li>
@@ -39,7 +39,7 @@ const Dashboard = () => {
                         </>
                             :
                             <>
-                                {/* <li>
+                                <li>
                                     <NavLink to='/dashboard/reports'>
                                         <FaList></FaList>
                                         My Reports</NavLink>
@@ -48,14 +48,41 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/comments'>
                                         <FaComment></FaComment>
                                         My Comments</NavLink>
-                                </li>  */}
+                                </li>
                             </>
                     }
-                    {/* <div className="divider"></div> */}
+                    <div className="divider"></div>
 
                     {
-                        isSurveyor ? <>
+                        isSurveyor || !isAdmin ? <>
+
                             <li>
+                                <NavLink to='/dashboard/create'>
+                                    <FaCreativeCommons></FaCreativeCommons>
+                                    Create Survey</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/update'>
+                                    <FaEdit></FaEdit>
+                                    Update</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/updates/:id'>
+                                    <FaEdit></FaEdit>
+                                    Update Form</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/responses/:id'>
+                                    <FaRankingStar></FaRankingStar>
+                                    Responses</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/payments'>
+                                    <FaMoneyBill></FaMoneyBill>
+                                    Payments</NavLink>
+                            </li>
+
+                            {/* <li>
                                 <NavLink to='/dashboard/reports'>
                                     <FaList></FaList>
                                     My Reports</NavLink>
@@ -64,34 +91,19 @@ const Dashboard = () => {
                                 <NavLink to='/dashboard/comments'>
                                     <FaComment></FaComment>
                                     My Comments</NavLink>
-                            </li>
+                            </li> */}
                         </>
                             :
                             <>
                                 <li>
-                                    <NavLink to='/dashboard/create'>
-                                        <FaCreativeCommons></FaCreativeCommons>
-                                        Create Survey</NavLink>
+                                    <NavLink to='/dashboard/reports'>
+                                        <FaList></FaList>
+                                        My Reports</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/dashboard/update'>
-                                        <FaEdit></FaEdit>
-                                        Update</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to='/dashboard/updates/:id'>
-                                        <FaEdit></FaEdit>
-                                        Update Form</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to='/dashboard/responses/:id'>
-                                        <FaRankingStar></FaRankingStar>
-                                        Responses</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to='/dashboard/payments'>
-                                        <FaMoneyBill></FaMoneyBill>
-                                        Payments</NavLink>
+                                    <NavLink to='/dashboard/comments'>
+                                        <FaComment></FaComment>
+                                        My Comments</NavLink>
                                 </li>
                             </>
                     }

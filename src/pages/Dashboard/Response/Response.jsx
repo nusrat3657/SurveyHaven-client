@@ -16,7 +16,7 @@ const Response = () => {
             const response = await axiosSecure.get('/surveys');
             setSurveys(response.data);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -29,6 +29,9 @@ const Response = () => {
             <Helmet>
                 <title>SurveyHaven | Responses</title>
             </Helmet>
+            <div className="mx-auto text-center md:w-4/12 my-5">
+                <h3 className="text-2xl uppercase border-y-4 py-4">Responses</h3>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

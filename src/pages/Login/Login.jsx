@@ -46,7 +46,7 @@ const Login = () => {
                 }
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -58,14 +58,14 @@ const Login = () => {
     const handleLogin = provider => {
         provider()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 const userInfo = {
                     name: result.user?.displayName,
                     email: result.user?.email
                 }
                 axiosPublic.post('/users', userInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     navigate(from);
                 })
 

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -22,7 +22,7 @@ const Details = () => {
                 const response = await axiosSecure.get(`/surveys/${id}`);
                 setSurvey(response.data);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
             }
         };
 
@@ -41,7 +41,7 @@ const Details = () => {
                 setSurvey(response.data.updatedSurvey);
             }
         } catch (error) {
-            console.error('Error submitting vote:', error);
+            // console.error('Error submitting vote:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
@@ -60,7 +60,7 @@ const Details = () => {
                 });
             }
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -70,7 +70,7 @@ const Details = () => {
             setComments([...comments, response.data.comment]);
             setNewComment('');
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
@@ -107,14 +107,15 @@ const Details = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <h2>{survey.title}</h2>
-                <p>{survey.description}</p>
+            <div className='my-10 bg-blue-400/20 p-8 text-center'>
+                <h2 className='text-3xl font-bold'>{survey.title}</h2>
+                <div className='divider'></div>
+                <p className='text-lg font-semibold'>{survey.description}</p>
 
                 {user ? (
                     <form onSubmit={handleVote}>
                         <div>
-                            <label>
+                            <label className='space-x-4'>
                                 <input
                                     type="radio"
                                     name="vote"
@@ -135,10 +136,10 @@ const Details = () => {
                                 No
                             </label>
                         </div>
-                        <button type="submit">Submit Vote</button>
+                        <button className='btn bg-blue-400 text-white' type="submit">Submit Vote</button>
                     </form>
                 ) : (
-                    <p>Please log in to vote.</p>
+                    <p className='text-3xl font-bold text-red-600'>Please log in to vote.</p>
                 )}
 
                 {isProUser && (
@@ -150,6 +151,7 @@ const Details = () => {
                             ))}
                         </ul>
                         <input
+                            className='textarea'
                             type="text"
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
@@ -161,11 +163,15 @@ const Details = () => {
 
                 <div>
                     <h3>Results</h3>
-                    {/* <Bar data={data} /> */}
+                    {/* <p>{data}</p> */}
                 </div>
 
-                <button onClick={handleReport}>Report Survey</button>
+                <div className='flex justify-evenly'>
+                    <button className='btn bg-red-600 text-white' onClick={handleReport}>Report Survey</button>
+                    <button className='btn bg-green-600 text-white'><Link to="">Payment</Link></button>
+                </div>
             </div>
+
         </div>
     );
 };

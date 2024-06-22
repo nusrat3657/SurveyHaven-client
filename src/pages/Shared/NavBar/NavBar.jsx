@@ -25,7 +25,6 @@ const NavBar = () => {
     const navOptions = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/survey'>Survey</Link></li>
-        <li><Link to='/dashboard/secret'>Secret</Link></li>
         <li><Link to='/pricing'>Pricing</Link></li>
         <li><Link to='/dashboard/reports'>My Reports</Link></li>
     </>

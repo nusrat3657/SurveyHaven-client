@@ -69,15 +69,15 @@ export const router = createBrowserRouter([
             // surveyor routes
             {
                 path: 'create',
-                element: <SurveyorRoute><CreateSurvey></CreateSurvey></SurveyorRoute>
+                element: <CreateSurvey></CreateSurvey> 
             },
             {
                 path: 'update',
-                element: <SurveyorRoute><Update></Update></SurveyorRoute>
+                element: <Update></Update> 
             },
             {
                 path: 'updates/:id',
-                element: <SurveyorRoute><UpdateForm></UpdateForm></SurveyorRoute>
+                element: <UpdateForm></UpdateForm> 
 
             },
             {
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
             // admin routes
             {
                 path: 'users',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+                element: <AllUsers></AllUsers>
             },
         ]
     },

@@ -12,7 +12,7 @@ const UpdateForm = () => {
     const { reset } = useForm();
     const axiosSecure = useAxiosSecure();
     const [survey, setSurvey] = useState(null);
-    console.log(survey);
+    // console.log(survey);
 
     useEffect(() => {
         const fetchSurvey = async () => {
@@ -20,7 +20,7 @@ const UpdateForm = () => {
                 const response = await axiosSecure.get(`/surveys/${id}`);
                 setSurvey(response.data);
             } catch (error) {
-                console.error(error);
+                // console.error(error);
             }
         };
 
@@ -58,7 +58,7 @@ const UpdateForm = () => {
         const date = survey.date;
 
         const updatedSurvey = { name, email, title, description, options, category, deadline, price, yesCount, noCount, totalVote, status, date };
-        console.log(updatedSurvey);
+        // console.log(updatedSurvey);
 
         // send data to the server
         try {
@@ -73,7 +73,7 @@ const UpdateForm = () => {
                 });
             }
         } catch (error) {
-            console.error('Error updating survey:', error);
+            // console.error('Error updating survey:', error);
         }
     };
 
