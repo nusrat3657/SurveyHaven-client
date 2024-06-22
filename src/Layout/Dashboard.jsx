@@ -97,45 +97,6 @@ const Dashboard = () => {
                             </>
                     }
 
-                    {/* {
-                        isSurveyor ? <>
-                            <li>
-                                <NavLink to='/dashboard/create'>
-                                    <FaCreativeCommons></FaCreativeCommons>
-                                    Create Survey</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/update'>
-                                    <FaEdit></FaEdit>
-                                    Update</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/responses'>
-                                    <FaRankingStar></FaRankingStar>
-                                    Responses</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/payments'>
-                                    <FaMoneyBill></FaMoneyBill>
-                                    Payments</NavLink>
-                            </li>
-                            
-                        </>
-                            :
-                            <>
-                            <li>
-                                <NavLink to='/dashboard/reports'>
-                                    <FaList></FaList>
-                                    My Reports</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/comments'>
-                                    <FaComment></FaComment>
-                                    My Comments</NavLink>
-                            </li>
-                            </>
-
-                    } */}
 
                     <div className="divider"></div>
                     <li>
