@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUser, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -7,88 +7,107 @@ import { useEffect, useState } from 'react';
 const AllUsers = () => {
     const [filteredUser, setFilteredUser] = useState([]);
     const [role, setRole] = useState('');
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
             return res.data;
-        }
-    })
-    // console.log(users);
+        },
+    });
 
     useEffect(() => {
         let filtered = users;
-
-
         if (role) {
             filtered = filtered.filter(user => user.role === role);
         }
-
         setFilteredUser(filtered);
     }, [role, users]);
 
+    const handleMakeAdmin = async (user) => {
+        try {
+            const res = await axiosSecure.patch(`/users/admin/${user._id}`);
+            if (res?.data?.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        } catch (error) {
+            console.error('Error making admin:', error);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Failed to make admin',
+                text: error.response?.data?.message || 'Unknown error',
+                showConfirmButton: true,
+            });
+        }
+    };
 
-    const handleMakeAdmin = user => {
-        axiosSecure.patch(`/users/admin/${user._id}`)
-            .then(res => {
-                // console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.name} is an Admin Now!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            })
-    }
+    const handleMakeSurveyor = async (user) => {
+        try {
+            const res = await axiosSecure.patch(`/users/surveyor/${user._id}`);
+            if (res?.data?.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is a Surveyor Now!`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        } catch (error) {
+            console.error('Error making surveyor:', error);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Failed to make surveyor',
+                text: error.response?.data?.message || 'Unknown error',
+                showConfirmButton: true,
+            });
+        }
+    };
 
-    const handleMakeSurveyor = user => {
-        axiosSecure.patch(`/users/surveyor/${user._id}`)
-            .then(res => {
-                // console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.name} is an Surveyor Now!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            })
-    }
-
-    const handleDeleteUser = user => {
+    const handleDeleteUser = async (user) => {
         Swal.fire({
-            title: "Are you sure?",
+            title: 'Are you sure?',
             text: "You won't be able to revert this!",
-            icon: "warning",
+            icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/users/${user._id}`)
-                    .then(data => {
-                        // console.log(data);
-                        if (data.deletedCount > 0) {
-                            refetch();
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your added food has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    })
+                try {
+                    const res = await axiosSecure.delete(`/users/${user._id}`);
+                    if (res?.data?.deletedCount > 0) {
+                        refetch();
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'The user has been deleted.',
+                            icon: 'success',
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error deleting user:', error);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Failed to delete user',
+                        text: error.response?.data?.message || 'Unknown error',
+                        showConfirmButton: true,
+                    });
+                }
             }
         });
-    }
+    };
 
     return (
         <div>
@@ -108,7 +127,6 @@ const AllUsers = () => {
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th></th>
@@ -119,28 +137,32 @@ const AllUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            filteredUser.map((user, index) => <tr key={user._id}>
+                        {filteredUser.map((user, index) => (
+                            <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <div className='flex'>
-                                    <td>
-                                        {user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className='btn btn-ghost btn-md'>
-                                            <FaUsers className='text-blue-400'></FaUsers>
-                                        </button>}
-                                        {user.role === 'surveyor' ? 'Surveyor' : <button onClick={() => handleMakeSurveyor(user)} className='btn btn-ghost btn-md'>
-                                            <FaUser className='text-blue-400'></FaUser>
-                                        </button>}
-                                    </td>
-                                </div>
                                 <td>
-                                    <button onClick={() => handleDeleteUser(user)} className='btn btn-ghost btn-md'>
-                                        <FaTrashAlt className='text-red-600'></FaTrashAlt>
+                                    <div className="flex space-x-2">
+                                        {user.role === 'admin' ? 'Admin' : (
+                                            <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-md">
+                                                <FaUsers className="text-blue-400" />
+                                            </button>
+                                        )}
+                                        {user.role === 'surveyor' ? 'Surveyor' : (
+                                            <button onClick={() => handleMakeSurveyor(user)} className="btn btn-ghost btn-md">
+                                                <FaUser className="text-blue-400" />
+                                            </button>
+                                        )}
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost btn-md">
+                                        <FaTrashAlt className="text-red-600" />
                                     </button>
                                 </td>
-                            </tr>)
-                        }
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
