@@ -18,6 +18,10 @@ import Details from "../pages/Details/Details";
 import Update from "../pages/Dashboard/Update/Update";
 import UpdateForm from "../pages/Dashboard/UpdateForm/UpdateForm";
 import Response from "../pages/Dashboard/Response/Response";
+import AdminRoute from "./AdminRoute";
+import SurveyorRoute from "./SurveyorRoute";
+import ResponseDetail from "../pages/ResponseDetail/ResponseDetail";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -67,27 +71,39 @@ export const router = createBrowserRouter([
             // surveyor routes
             {
                 path: 'create',
-                element: <CreateSurvey></CreateSurvey> 
+                element: <SurveyorRoute><CreateSurvey></CreateSurvey></SurveyorRoute>
             },
             {
                 path: 'update',
-                element: <Update></Update> 
+                element: <SurveyorRoute><Update></Update></SurveyorRoute>
             },
             {
                 path: 'updates/:id',
-                element: <UpdateForm></UpdateForm> 
+                element: <SurveyorRoute><UpdateForm></UpdateForm></SurveyorRoute>
 
             },
             {
                 path: 'responses/:id',
-                element: <Response></Response>
+                element: <SurveyorRoute><Response></Response></SurveyorRoute>
+            },
+            {
+                path: 'detail/:id',
+                element: <SurveyorRoute><ResponseDetail></ResponseDetail></SurveyorRoute>
             },
 
             // admin routes
             {
                 path: 'users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
+            {
+                path: 'payments',
+                element: <AdminRoute><Payment></Payment></AdminRoute>
+            },
+            // {
+            //     path: 'responses/:id',
+            //     element: <AdminRoute><Response></Response></AdminRoute>
+            // },
         ]
     },
     {

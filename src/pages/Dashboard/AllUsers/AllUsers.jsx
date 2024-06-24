@@ -2,8 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUser, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { useEffect, useState } from 'react';
 
 const AllUsers = () => {
+    const [filteredUser, setFilteredUser] = useState([]);
+    const [role, setRole] = useState('');
     const axiosSecure = useAxiosSecure()
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -12,6 +15,19 @@ const AllUsers = () => {
             return res.data;
         }
     })
+    // console.log(users);
+
+    useEffect(() => {
+        let filtered = users;
+
+
+        if (role) {
+            filtered = filtered.filter(user => user.role === role);
+        }
+
+        setFilteredUser(filtered);
+    }, [role, users]);
+
 
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
@@ -33,7 +49,7 @@ const AllUsers = () => {
     const handleMakeSurveyor = user => {
         axiosSecure.patch(`/users/surveyor/${user._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -79,6 +95,16 @@ const AllUsers = () => {
             <div className="flex justify-evenly my-4">
                 <h2 className="text-3xl">All Users</h2>
                 <h2 className="text-3xl">Total Users: {users.length}</h2>
+                <label className="flex items-center">
+                    <h2 className="font-bold">Role:</h2>
+                    <select className="select select-bordered w-full max-w-xs" value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="">All</option>
+                        <option value="surveyor">Surveyor</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                        <option value="pro-user">Pro-User</option>
+                    </select>
+                </label>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
@@ -94,7 +120,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            filteredUser.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>

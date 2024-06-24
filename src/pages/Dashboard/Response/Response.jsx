@@ -13,7 +13,7 @@ const Response = () => {
 
     const fetchSurveys = async () => {
         try {
-            const response = await axiosSecure.get('/surveys');
+            const response = await axiosSecure.get('/responses');
             setSurveys(response.data);
         } catch (error) {
             // console.error(error);

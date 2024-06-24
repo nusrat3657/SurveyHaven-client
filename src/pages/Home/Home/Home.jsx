@@ -10,20 +10,19 @@ const Home = () => {
     const [surveys, setSurveys] = useState([]);
     // console.log(surveys);
     const [topVote, setTopVote] = useState([]);
-    const sortedData = surveys.sort((a, b) => b.totalVote - a.totalVote);
-    const topSix = sortedData.slice(0, 6);
     const [topDate, setTopDate] = useState([]);
-    const sortedDate = surveys.sort((a, b) => b.date - a.date);
-    const sixDate = sortedDate.slice(0, 6);
-    // console.log(topVote);
 
     const fetchSurveys = async () => {
         try {
-            const response = await axiosSecure.get('/surveys')
-
-            setTopVote(topSix);
-            setTopDate(sixDate);
+            const response = await axiosSecure.get('/surveys');
             setSurveys(response.data);
+
+            // Sort and slice data after surveys are fetched
+            const sortedByVotes = [...response.data].sort((a, b) => b.totalVote - a.totalVote);
+            setTopVote(sortedByVotes.slice(0, 6));
+
+            const sortedByDate = [...response.data].sort((a, b) => new Date(b.date) - new Date(a.date));
+            setTopDate(sortedByDate.slice(0, 6));
         } catch (error) {
             // console.error(error);
         }

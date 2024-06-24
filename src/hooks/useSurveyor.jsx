@@ -11,7 +11,7 @@ const useSurveyor = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/surveyor/${user.email}`);
             // console.log(res.data);
-            return res.data?.admin;
+            return res.data?.surveyor;
         }
     });
     return [isSurveyor, isSurveyorLoading]

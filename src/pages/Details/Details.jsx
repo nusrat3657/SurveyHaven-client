@@ -15,6 +15,7 @@ const Details = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const axiosSecure = useAxiosSecure();
+    console.log(survey);
 
     useEffect(() => {
         const fetchSurvey = async () => {
@@ -30,24 +31,47 @@ const Details = () => {
     }, [id, axiosSecure]);
 
     const handleVote = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axiosSecure.post(`/surveys/${id}/vote`, { vote });
-            if (response.data.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Vote submitted',
-                });
-                setSurvey(response.data.updatedSurvey);
-            }
-        } catch (error) {
-            // console.error('Error submitting vote:', error);
+        e.preventDefault();const form = e.target;
+        const votes = form.vote.value
+        const responseData = {
+            name: user.displayName,
+            email: user.email,
+            title: survey.title,
+            price: survey.price,
+            description: survey.description,
+            vote: votes,
+            category: survey.category,
+        };
+
+        const surveyRes = await axiosSecure.post('/responses', responseData);
+        // console.log(surveyRes.data);
+        if (surveyRes.data.insertedId) {
+            // reset();
             Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Failed to submit vote. Please try again later.',
+                position: 'top-end',
+                icon: 'success',
+                title: 'Response has been recorded successfully.',
+                showConfirmButton: false,
+                timer: 1500,
             });
         }
+        // try {
+        //     const response = await axiosSecure.post(`/surveys/${id}/vote`, { vote });
+        //     if (response.data.success) {
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Vote submitted',
+        //         });
+        //         setSurvey(response.data.updatedSurvey);
+        //     }
+        // } catch (error) {
+        //     // console.error('Error submitting vote:', error);
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Error!',
+        //         text: 'Failed to submit vote. Please try again later.',
+        //     });
+        // }
     };
 
     const handleReport = async () => {

@@ -21,16 +21,16 @@ const Dashboard = () => {
                                     <FaUsers></FaUsers>
                                     All Users</NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink to='/dashboard/surveys'>
                                     <FaProductHunt></FaProductHunt>
                                     Surveys</NavLink>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <NavLink to='/dashboard/responses/:id'>
                                     <FaRankingStar></FaRankingStar>
                                     Responses</NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <NavLink to='/dashboard/payments'>
                                     <FaMoneyBill></FaMoneyBill>
@@ -54,7 +54,7 @@ const Dashboard = () => {
                     <div className="divider"></div>
 
                     {
-                        isSurveyor || !isAdmin ? <>
+                        isSurveyor  ? <>
 
                             <li>
                                 <NavLink to='/dashboard/create'>
@@ -75,11 +75,6 @@ const Dashboard = () => {
                                 <NavLink to='/dashboard/responses/:id'>
                                     <FaRankingStar></FaRankingStar>
                                     Responses</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/payments'>
-                                    <FaMoneyBill></FaMoneyBill>
-                                    Payments</NavLink>
                             </li>
                         </>
                             :
